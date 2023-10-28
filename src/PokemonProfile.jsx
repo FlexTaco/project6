@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Profile.css";
+import RightList from "./components/RightList";
 
 const PokemonProfile = () => {
   const { name } = useParams(); // Get the Pokemon name from the URL parameter
@@ -25,20 +26,23 @@ const PokemonProfile = () => {
   }
 
   return (
-    <div className="profile">
-      <h2 className="pokemonName">{pokemonData.name.toUpperCase()}</h2>
-      <div>
-        <p>Height: {pokemonData.height}dm</p>
-        <p>Weight: {pokemonData.weight}hg</p>
-        <p> Type: {pokemonData.types[0].type.name}</p>
-        <p>Base Stat: {pokemonData.stats[0].base_stat}</p>
+    <>
+      <div className="profile">
+        <h2 className="pokemonName">{pokemonData.name.toUpperCase()}</h2>
+        <div>
+          <p>Height: {pokemonData.height}dm</p>
+          <p>Weight: {pokemonData.weight}hg</p>
+          <p> Type: {pokemonData.types[0].type.name}</p>
+          <p>Base Stat: {pokemonData.stats[0].base_stat}</p>
+        </div>
+        <img
+          src={pokemonData.sprites.front_shiny}
+          alt="picture of pokemon"
+          className="checkImg"
+        />
       </div>
-      <img
-        src={pokemonData.sprites.front_shiny}
-        alt="picture of pokemon"
-        className="checkImg"
-      />
-    </div>
+      <RightList />
+    </>
   );
 };
 
